@@ -64,7 +64,8 @@ dashboard_panel <- function() {
                   width = 12,
                   h2("Outputs 1 (h2)"),
                     width = 12,
-                    plotlyOutput("lineRevBal")
+                    plotlyOutput("lineTimeSeries")
+                  )
                 )
               )
             ),
