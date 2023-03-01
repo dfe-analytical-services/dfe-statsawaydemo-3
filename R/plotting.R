@@ -19,8 +19,6 @@ createTimeSeries <- function(df, breakdown, metric) {
     xlab("Academic year end") +
     ylab(metric) +
     scale_color_manual(
-      "Area",
-      breaks = unique(c("England", inputArea)),
       values = gss_colour_pallette
     )
 }

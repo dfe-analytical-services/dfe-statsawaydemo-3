@@ -39,7 +39,8 @@ dashboard_panel <- function() {
                                   choices = list('headcount','full_time_equivalent'))
                   
                 )
-              ),
+            ),
+          gov_row(
               column(
                 width = 12,
                 paste("Download the underlying data for this dashboard:"), br(),
@@ -66,7 +67,6 @@ dashboard_panel <- function() {
                     plotlyOutput("lineTimeSeries")
                   )
                 )
-              )
             ),
             tabPanel(
               "Table",
@@ -83,9 +83,11 @@ dashboard_panel <- function() {
               )
             )
           )
+          )
         )
         # add box to show user input
       )
+  )
     
   
 }
