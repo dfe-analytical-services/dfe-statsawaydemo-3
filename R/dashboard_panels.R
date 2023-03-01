@@ -86,6 +86,6 @@ dashboard_panel <- function() {
         )
         # add box to show user input
       )
-    )
+    
   
 }
