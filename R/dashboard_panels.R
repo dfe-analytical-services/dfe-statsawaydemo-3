@@ -10,7 +10,7 @@ dashboard_panel <- function() {
       gov_row(
         column(
           width = 12,
-          h1("Overall content title for this dashboard page (h1)"),
+          h1("Overall content title for this dashboard page (h1)")
         ),
         column(
           width = 12,
@@ -69,29 +69,14 @@ dashboard_panel <- function() {
               )
             ),
             tabPanel(
-              "Example panel 2",
+              "Table",
               fluidRow(
                 column(
                   width = 12,
-                  h2("Outputs 2 (h2)"),
-                  p("This is the standard paragraph style for adding guiding info around data content."),
+                  h2("Teachers by characteristic"),
+                  p("Choose a geohraphical area, breakdown and indicator (headcount or FTE)."),
                   column(
                     width = 12,
-                    div(
-                      class = "well",
-                      style = "min-height: 100%; height: 100%; overflow-y: visible",
-                      fluidRow(
-                        column(
-                          width = 12,
-                          selectizeInput("selectBenchLAs",
-                            "Select benchamrk LAs",
-                            choices = choicesLAs$area_name,
-                            multiple = TRUE,
-                            options = list(maxItems = 3)
-                          )
-                        )
-                      )
-                    ),
                     dataTableOutput("tabBenchmark")
                   )
                 )
@@ -102,5 +87,5 @@ dashboard_panel <- function() {
         # add box to show user input
       )
     )
-  )
+  
 }
