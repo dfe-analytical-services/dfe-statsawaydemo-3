@@ -15,6 +15,9 @@ read_data <- function(file = "data/stats_awayday_demo.csv") {
   # This reads in an example file. For the purposes of this demo, we're using the
   # latest LA expenditure data downloaded from the EES release.
   teacher_data <- read.csv(file)
+  teacher_data <- teacher_data %>% mutate(
+    time_period = as.numeric(paste0("20", substr(format(time_period), 5, 6)))
+  )
   # The time period column name has some non-ascii characters so we're just going to rename it here
   return(teacher_data)
 }
