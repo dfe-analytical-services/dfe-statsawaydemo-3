@@ -63,7 +63,6 @@ dashboard_panel <- function() {
                 column(
                   width = 12,
                   h2("Outputs 1 (h2)"),
-                    width = 12,
                     plotlyOutput("lineTimeSeries")
                   )
                 )
