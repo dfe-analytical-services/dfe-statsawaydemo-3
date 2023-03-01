@@ -82,11 +82,10 @@ appLoadingCSS <- "
 }
 "
 
-site_primary <- "https://department-for-education.shinyapps.io/dfe-shiny-template/"
-site_overflow <- "https://department-for-education.shinyapps.io/dfe-shiny-template-overflow/"
-sites_list <- c(site_primary, site_overflow) # We can add further mirrors where necessary. Each one can generally handle about 2,500 users simultaneously
+site_primary <- "https://department-for-education.shinyapps.io/dev-dfe-statsaway-demo-3/"
+sites_list <- c(site_primary) # We can add further mirrors where necessary. Each one can generally handle about 2,500 users simultaneously
 ees_pub_name <- "Statistical publication" # Update this with your parent publication name (e.g. the EES publication)
-ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/" # Update with parent publication link
+ees_publication <- "https://explore-education-statistics.service.gov.uk/find-statistics/school-workforce-in-england" # Update with parent publication link
 google_analytics_key <- "Z967JJVQQX"
 
 
@@ -94,29 +93,18 @@ source("R/read_data.R")
 
 # Read in the data
 teacher_data <- read_data()
-teacher_data$region_name[teacher_data$region_name == ''] <- 'England'
+teacher_data$region_name[teacher_data$region_name == ""] <- "England"
 teacher_data$headcount <- round(teacher_data$headcount)
 teacher_data$full_time_equivalent <- round(teacher_data$full_time_equivalent)
 # Get geographical levels from data
-dfAreas <- dfRevBal %>%
+Areas <- teacher_data %>%
   select(
     geographic_level, country_name, country_code,
-    region_name, region_code,
-    la_name, old_la_code, new_la_code
+    region_name, region_code
   ) %>%
   distinct()
 
-choicesLAs <- dfAreas %>%
-  filter(geographic_level == "Local authority") %>%
-  select(geographic_level, area_name = la_name) %>%
-  arrange(area_name)
-
-choicesAreas <- dfAreas %>%
+choicesAreas <- Areas %>%
   filter(geographic_level == "National") %>%
   select(geographic_level, area_name = country_name) %>%
-  rbind(dfAreas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name)) %>%
-  rbind(choicesLAs)
-
-choicesYears <- unique(dfRevBal$time_period)
-
-choicesPhase <- unique(dfRevBal$school_phase)
+  rbind(Areas %>% filter(geographic_level == "Regional") %>% select(geographic_level, area_name = region_name))

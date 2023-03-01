@@ -112,11 +112,18 @@ server <- function(input, output, session) {
   #  output$cookie_status <- renderText(as.character(input$cookies))
 
   # Simple server stuff goes here ------------------------------------------------------------
-  reactiveRevBal <- reactive({
-    dfRevBal %>% filter(
-      area_name == input$selectArea | area_name == "England",
-      school_phase == input$selectPhase
-    )
+  reactive_teacher_data <- reactive({
+    if (input$breakdown == "grade") {
+      teacher_data %>% filter(
+        region_name == input$Area,
+        gender == "Total"
+      )
+    } else if (input$breakdown == "gender") {
+      teacher_data %>% filter(
+        region_name == input$Area,
+        grade == "Total"
+      )
+    }
   })
 
   # Define server logic required to draw a histogram
