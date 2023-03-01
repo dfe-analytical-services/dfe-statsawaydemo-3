@@ -65,7 +65,7 @@ ui <- function(input, output, session) {
         href = "dfefavicon.png"
       ),
       # Add title for browser tabs
-      tags$title("DfE Shiny Template")
+      tags$title("DfE Stats Away Day demo")
     ),
     tags$html(lang = "en"),
     # Add meta description for search engines
@@ -104,7 +104,7 @@ ui <- function(input, output, session) {
     shinyGovstyle::header(
       main_text = "",
       main_link = "https://www.gov.uk/government/organisations/department-for-education",
-      secondary_text = "DfE Shiny Template",
+      secondary_text = "DfE Stats Away Day demo",
       logo = "images/DfE_logo_landscape.png",
       logo_width = 150,
       logo_height = 32
@@ -124,7 +124,6 @@ ui <- function(input, output, session) {
       id = "navlistPanel",
       widths = c(2, 8),
       well = FALSE,
-      homepage_panel(),
       dashboard_panel(),
       a11y_panel(),
       support_links()
